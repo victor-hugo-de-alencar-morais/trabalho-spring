@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listar Casas</title>
+</head>
+<body>
+
+    
+    <header>
+        <div>
+            <h1>Lista de Casas</h1>
+        </div>
+    </header>
+
+    
+    <div>
+        <h3>
+            <a href="/alunos/criar">Cadastrar Nova Casa</a>
+        </h3>
+    </div>
+
+
+    <div>
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Casa</th>
+                        <th>Cid</th>
+                        <th>Endereço</th>
+                        <th>Cidade</th>
+                        <th>nr comodos</th>
+                        <th>Metros quadrados</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="casa : ${casas}">
+                        <td th:text="${casa.idCasa}"></td>
+                        <td th:text="${casa.cidCasa}"></td>
+                        <td th:text="${casa.enderecoCasa}"></td>
+                        <td th:text="${casa.cidadeCasa}"></td>
+                        <td th:text="${casa.nrcomodosCasa}"></td>
+                        <td th:text="${casa.metrosquadCasa}"></td>
+                        <td>
+                            <a th:href="@{/casas/editar/{id}(id=${casa.idCasa})}">Editar</a>
+                            <a th:href="@{/casas/excluir/{id}(id=${casa.idCasa})}">Excluir</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div>
+        <a href="/">Voltar</a>
+    </div>
+
+</body>
+</html>
