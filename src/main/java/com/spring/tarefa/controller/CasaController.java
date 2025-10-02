@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.spring.tarefa.Service.CasaService;
 import com.spring.tarefa.entity.Casa;
 
-import ch.qos.logback.core.model.Model;
+import org.springframework.ui.Model;
 
 @Controller
 @RequestMapping("/casa")
@@ -27,27 +27,27 @@ public class CasaController {
     @PostMapping("/salvar")
     public String salvar(@ModelAttribute Casa casa) {
         casaService.save(casa);
-        return "redirect:/casas/listar";
+        return "redirect:/casa/listar";
     }
     //Método para listar todas as casas
     @GetMapping("/listar")
     public String listar(Model model){
         List<Casa> casas = casaService.findAll();
         model.addAttribute("casas", casas);
-        return "casa/listarCasa";
+        return "Casa/listarCasa";
     }
     //Método para abrir o formulário de uma casa
     @GetMapping("/criar")
     public String criarForm(Model model) {
         model.addAttribute("casa", new Casa());
-        return "casa/formularioCasa";
+        return "Casa/formularioCasa";
     }
 
     //metodo para excluir uma casa 
     @GetMapping("/excluir/{id}")
     public String excluir(@PathVariable("id") Integer id){
     casaService.deleteById(id);
-    return "redirect:/casas/listar";
+    return "redirect:/casa/listar";
 }
 
     //metodo para abrir o formulario de edição de uma casa
@@ -55,7 +55,7 @@ public class CasaController {
     public String editarForm(@PathVariable("id") Integer id, Model model) {
         Casa casa = casaService.findById(id);
         model.addAttribute("casa", casa);
-        return "casa/formularioCasa";
+        return "Casa/formularioCasa";
     }
    
 }
